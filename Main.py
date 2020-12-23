@@ -6,8 +6,8 @@ Created on Tue Feb 25 16:05:00 2020
 """
 
 import tkinter as tk
-import requests
-from PIL import Image, ImageTk
+import requests					# pip install requests on prompt
+from PIL import Image, ImageTk	# pip intall pillow
 
 HEIGHT = 400
 WIDTH = 800
@@ -34,7 +34,9 @@ def format_weather(weather):
     return fin_str
 
 def get_weather(city):
-    weather_key = '12642673511ae759b7dc4f1273079453'
+    api_file = open('api-key.txt', 'r')
+    weather_key = api_file.read()
+    api_file.close()
     url = 'https://api.openweathermap.org/data/2.5/weather'
     params = {'APPID': weather_key, 'q': city, 'units': 'metric'}
     response = requests.get(url,params=params)
